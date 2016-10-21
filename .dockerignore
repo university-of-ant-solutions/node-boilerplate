@@ -1,0 +1,3 @@
+.dockerignore
+src
+node_modules*

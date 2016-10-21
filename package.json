@@ -1,0 +1,54 @@
+{
+  "name": "server-node",
+  "version": "0.0.1",
+  "description": "server site",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./src/app.js --exec \"babel-node\"",
+    "lint": "eslint --config=./.eslintrc src",
+    "lint:fix": "eslint --fix --config=./.eslintrc src",
+    "test:tape": "NODE_ENV=tests ./node_modules/.bin/tape -r babel-register ./src/**/__tests__/**/index.js | tap-notify | tap-diff",
+    "test:watch": "nodemon --watch src -q -x 'npm run test:tape'",
+    "dummy-data": "./bin/dumb-db.sh"
+  },
+  "author": "Hoang Nam <particle4dev@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-plugin-transform-async-to-generator": "^6.8.0",
+    "babel-plugin-transform-object-rest-spread": "6.8.0",
+    "babel-preset-es2015-node5": "1.2.0",
+    "babel-register": "^6.11.6",
+    "deep-equal": "^1.0.1",
+    "eslint": "^3.2.2",
+    "eslint-config-airbnb": "^10.0.0",
+    "eslint-plugin-import": "^1.8.1",
+    "eslint-plugin-jsx-a11y": "^2.1.0",
+    "eslint-plugin-react": "^6.0.0",
+    "nodemon": "^1.9.2",
+    "tap-diff": "^0.1.1",
+    "tap-notify": "^1.0.0",
+    "tape": "^4.6.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "compression": "^1.6.2",
+    "cors": "^2.8.1",
+    "errorhandler": "^1.4.3",
+    "express": "^4.14.0",
+    "lodash": "^4.14.2",
+    "mongoose": "^4.5.8",
+    "mongoose-timestamp": "^0.6.0",
+    "morgan": "^1.7.0",
+    "nconf": "^0.8.4",
+    "redis": "^2.6.2",
+    "response-time": "^2.3.1",
+    "serve-favicon": "^2.3.0",
+    "winston": "^2.2.0",
+    "winston-daily-rotate-file": "^1.2.0"
+  },
+  "engines": {
+    "node": "6.7.0",
+    "npm": "3.10.8"
+  }
+}

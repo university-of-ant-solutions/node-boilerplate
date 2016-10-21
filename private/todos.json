@@ -1,0 +1,38 @@
+{
+  "data": [{
+      "_id": "5804ddc5e12f6c001a10243b",
+      "createdAt": "2016-10-17T14:18:45.385Z",
+      "updatedAt": "2016-10-17T14:18:45.385Z",
+      "title": "Go to the bank",
+      "done": true,
+      "__v": 0
+    }, {
+      "_id": "5804ddc5e12f6c001a10243c",
+      "createdAt": "2016-10-17T14:18:45.418Z",
+      "updatedAt": "2016-10-17T14:18:45.418Z",
+      "title": "Buy food",
+      "done": false,
+      "__v": 0
+    }, {
+      "_id": "5804ddc5e12f6c001a10243d",
+      "createdAt": "2016-10-17T14:18:45.431Z",
+      "updatedAt": "2016-10-17T14:18:45.431Z",
+      "title": "Make dinner",
+      "done": true,
+      "__v": 0
+    }, {
+      "_id": "5804ddc5e12f6c001a10243e",
+      "createdAt": "2016-10-17T14:18:45.437Z",
+      "updatedAt": "2016-10-17T14:18:45.437Z",
+      "title": "Clean the house",
+      "done": false,
+      "__v": 0
+    }, {
+      "_id": "5804ddc5e12f6c001a10243f",
+      "createdAt": "2016-10-17T14:18:45.444Z",
+      "updatedAt": "2016-10-17T14:18:45.444Z",
+      "title": "Pick up the kids",
+      "done": true,
+      "__v": 0
+    }]
+}

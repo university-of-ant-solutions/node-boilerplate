@@ -1,0 +1,17 @@
+{
+  "http": {
+    "port": 4000
+  },
+  "db": {
+    "mongo": {
+      "uri": "mongodb://mongo/tests",
+      "options": {}
+    },
+    "redis": {
+      "uri": "redis://redis:6379",
+      "start": true
+    }
+  },
+  "cluster": false,
+  "maxClusters": 3
+}
