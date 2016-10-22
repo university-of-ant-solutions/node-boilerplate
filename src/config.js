@@ -27,7 +27,7 @@ export default function () {
     file: relativePath('..', 'config', `${f}`),
   }).defaults({});
   if (env === 'production') {
-    nconf.set('db:mongo:uri', MONGO_URL);
-    nconf.set('db:redis:uri', REDIS_URL);
+    nconf.set('db:mongo:uri', nconf.get('MONGO_URL'));
+    nconf.set('db:redis:uri', nconf.get('REDIS_URL'));
   }
 }
