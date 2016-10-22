@@ -1,7 +1,5 @@
 import nconf from 'nconf';
-import express from 'express';
 import config from './config';
-import cors from 'cors';
 import { mongo, redis } from './connect';
 import setupServer from './setup';
 

@@ -6,7 +6,8 @@ import DailyRotateFile from 'winston-daily-rotate-file';
 const LOGS_FOLDER = './logs/';
 const APP_NAME = 'node-server';
 const logger = new winston.Logger();
-let currentLogsFolder = LOGS_FOLDER, currentTransports;
+let currentLogsFolder = LOGS_FOLDER,
+  currentTransports;
 
 export function configureLogger({ logsFolder }) {
   logsFolder = logsFolder || currentLogsFolder;

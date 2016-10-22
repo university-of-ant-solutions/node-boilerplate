@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+
 const { Types: { ObjectId } } = mongoose;
 
 /**
@@ -14,6 +15,6 @@ export function toObjectId(idStr) {
   return id;
 }
 
-export function isObjectId (id) {
+export function isObjectId(id) {
   return id instanceof ObjectId;
 }

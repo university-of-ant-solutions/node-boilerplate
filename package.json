@@ -2,14 +2,16 @@
   "name": "server-node",
   "version": "0.0.1",
   "description": "server site",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "nodemon ./src/app.js --exec \"babel-node\"",
+    "clean": "rm -rf ./build/* ./logs/*",
+    "build": "rm -rf ./build/* && ./node_modules/.bin/babel src --ignore spec.js,test.js,**/__tests__/*.js --out-dir build",
     "lint": "eslint --config=./.eslintrc src",
     "lint:fix": "eslint --fix --config=./.eslintrc src",
+    "start": "NODE_ENV=development nodemon ./src/app.js --exec \"eslint --fix --config=./.eslintrc src & babel-node\"",
+    "serve": "NODE_ENV=production node ./build/app.js",
     "test:tape": "NODE_ENV=tests ./node_modules/.bin/tape -r babel-register ./src/**/__tests__/**/index.js | tap-notify | tap-diff",
-    "test:watch": "nodemon --watch src -q -x 'npm run test:tape'",
-    "dummy-data": "./bin/dumb-db.sh"
+    "test:watch": "nodemon --watch src -q -x 'npm run test:tape'"
   },
   "author": "Hoang Nam <particle4dev@gmail.com>",
   "license": "MIT",

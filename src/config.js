@@ -10,10 +10,10 @@ function relativePath(...p) {
   return path.join(...p);
 }
 
-function getPath(...p) {
-  p.unshift(__dirname);
-  return path.resolve(...p);
-}
+// function getPath(...p) {
+//   p.unshift(__dirname);
+//   return path.resolve(...p);
+// }
 
 export default function () {
   let f = 'development.json';

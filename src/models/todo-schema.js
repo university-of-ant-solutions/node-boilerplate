@@ -12,8 +12,8 @@ const TodoSchema = new Schema({
   },
   done: {
     type: Boolean,
-    required: true
-  }
+    required: true,
+  },
 });
 
 // indexes

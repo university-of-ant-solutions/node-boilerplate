@@ -20,12 +20,12 @@ export default function setAppDefaults(app) {
     app.use(logger('combined'));
   }
   app.use(compression());
-  app.use(bodyParser.urlencoded({extended: true}));
+  app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
   // app.use(favicon(path.resolve(__dirname, '../../../public/favicon32.png')));
 
   // auth
-  app.use(function (req, res, next) {
+  app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,Authorization,UserId');
