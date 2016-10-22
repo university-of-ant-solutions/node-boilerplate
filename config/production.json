@@ -4,11 +4,9 @@
   },
   "db": {
     "mongo": {
-      "uri": "mongodb://mongo/tests",
       "options": {}
     },
     "redis": {
-      "uri": "redis://redis:6379",
       "start": true
     }
   },
