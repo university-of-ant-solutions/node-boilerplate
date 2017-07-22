@@ -1,6 +1,7 @@
 import nconf from 'nconf';
 import Redis from 'redis';
 import logger from '../logger';
+
 let redis = {
   sub: null,
   pub: null,
