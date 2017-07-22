@@ -1,0 +1,45 @@
+version: "2"
+
+services:
+  mongo:
+    image: mongo:3.2
+    networks:
+      - back-tier
+
+  redis:
+    image: redis:3.2.0
+    networks:
+      - back-tier
+
+  server:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./bin:/usr/src/app/bin
+      - ./src:/usr/src/app/src
+      - ./logs:/usr/src/app/logs
+      - ./build:/usr/src/app/build
+      - ./config:/usr/src/app/config
+      - ./private:/usr/src/app/private
+      - ./package.json:/usr/src/app/package.json
+      - ./nodemon.json:/usr/src/app/nodemon.json
+      - ./.babelrc:/usr/src/app/.babelrc
+      - ./.eslintignore:/usr/src/app/.eslintignore
+      - ./.eslintrc:/usr/src/app/.eslintrc
+      - ./yarn.lock:/usr/src/app/yarn.lock
+    ports:
+      - 4000:4000
+    networks:
+      - back-tier
+    depends_on:
+      - mongo
+      - redis
+
+networks:
+  back-tier:
+  # front-tier:
+# volumes:
+  # db-data:
