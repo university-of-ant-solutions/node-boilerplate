@@ -3,6 +3,7 @@ import timestamps from 'mongoose-timestamp';
 import {
   connectPrimaryData,
 } from '../connect/mongo';
+
 const { Schema } = mongoose;
 
 const TodoSchema = new Schema({
