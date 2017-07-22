@@ -23,7 +23,7 @@ export default function setAppRouter(app) {
   };
 
   app.get('/todos', async (req, res) => {
-    await wait(5000);
+    // await wait(5000);
     const t = TodosModel();
     return res.json(await(t.find({}).sort({
       updatedAt: -1
@@ -31,7 +31,7 @@ export default function setAppRouter(app) {
   });
 
   app.post('/todos', async (req, res) => {
-    await wait(3000);
+    // await wait(3000);
     const { title } = req.body;
     const data = await TodosModel().create({
       title,
@@ -44,7 +44,7 @@ export default function setAppRouter(app) {
   });
 
   app.delete('/todos/:id', async (req, res) => {
-    await wait(3000);
+    // await wait(3000);
     let { id } = req.params;
     if(typeof id === 'string') {
       id = toObjectId(id);
@@ -61,7 +61,7 @@ export default function setAppRouter(app) {
   });
 
   app.put('/todos/:id', async (req, res) => {
-    await wait(3000);
+    // await wait(3000);
     console.log(1234);
   });
 
