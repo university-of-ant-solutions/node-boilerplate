@@ -1,6 +1,6 @@
 FROM node:8.2.1-alpine
 MAINTAINER Hoang Nam "particle4dev@gmail.com"
-LABEL description="This is dockerfile for building tool images <run test, lint, build source code>"
+LABEL description="This is dockerfile for building production images"
 
 ENV DUMB_INIT_VERSION 1.2.0
 
@@ -35,7 +35,11 @@ WORKDIR /usr/src/app
 COPY package.json nodemon.json .babelrc .eslintignore .eslintrc /usr/src/app/
 
 # Install Node.js dependencies
-RUN yarn install
+RUN yarn install --production --no-progress
+
+# Copy application files
+COPY ./build ./build
+COPY ./config ./config
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh

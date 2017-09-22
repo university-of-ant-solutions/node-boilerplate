@@ -1,38 +1,32 @@
 import nconf from 'nconf';
 import Redis from 'redis';
+import isFunction from 'lodash/isFunction';
 import logger from '../logger';
 
-let redis = {
-  sub: null,
-  pub: null,
-};
+let redis = null;
 
-export default function () {
+export default function (cb) {
   if (!nconf.get('db:redis:start')) {
     logger.warn('the configuration system is not going to start redis server');
     return;
   }
-  if (redis.sub && redis.pub) { return redis; }
+  if (redis) { return redis; }
 
-  try {
-    redis.sub = Redis.createClient(nconf.get('db:redis:uri'));
-    redis.pub = Redis.createClient(nconf.get('db:redis:uri'));
+  redis = Redis.createClient(nconf.get('db:redis:uri'));
+  redis.on('ready', () => {
     logger.info(`Redis default connection open to ${nconf.get('db:redis:uri')}`);
-    return redis;
-  } catch (e) {
-    logger.error(e.message);
-  }
+    isFunction(cb) && cb();
+  });
+  redis.on('error', (err) => {
+    logger.error(err.message);
+    isFunction(cb) && cb(err);
+  });
+  return redis;
 }
 
 process.on('exit', (code) => {
-  if (redis.sub && redis.sub.end) {
-    redis.sub.end();
+  if (redis) {
+    redis.end();
   }
-  if (redis.pub && redis.pub.end) {
-    redis.pub.end();
-  }
-  redis = {
-    sub: null,
-    pub: null,
-  };
+  redis = null;
 });
