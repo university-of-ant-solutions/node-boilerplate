@@ -1,6 +1,6 @@
 {
   "name": "server-node",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "server site",
   "main": "app.js",
   "scripts": {
