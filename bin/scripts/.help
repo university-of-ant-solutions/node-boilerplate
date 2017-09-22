@@ -1,0 +1,5 @@
+Setup and deploy authentication service on AWS.
+
+Usage:
+  snail [COMMAND] [ARGS...]
+  snail help

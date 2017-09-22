@@ -1,4 +1,5 @@
 import path from 'path';
+import os from 'os';
 import nconf from 'nconf';
 
 nconf.env().argv();
@@ -10,24 +11,19 @@ function relativePath(...p) {
   return path.join(...p);
 }
 
-// function getPath(...p) {
-//   p.unshift(__dirname);
-//   return path.resolve(...p);
-// }
-
 export default function () {
-  let f = 'development.json';
-  if (env === 'production') {
-    f = 'production.json';
-  }
-  if (env === 'tests') {
-    f = 'tests.json';
-  }
+  const f = 'index.json';
   nconf.argv().env().file({
     file: relativePath('..', 'config', `${f}`),
   }).defaults({});
-  if (env === 'production') {
+
+  if (nconf.get('MONGO_URL')) {
     nconf.set('db:mongo:uri', nconf.get('MONGO_URL'));
+  }
+
+  if (nconf.get('REDIS_URL')) {
     nconf.set('db:redis:uri', nconf.get('REDIS_URL'));
   }
+
+  nconf.set('status:hostname', os.hostname());
 }

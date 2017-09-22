@@ -1,0 +1,3 @@
+#!/bin/bash
+R_DIR=$(pwd)
+INFRASTRUCTURE_FOLDER="$R_DIR/infrastructure"

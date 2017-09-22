@@ -1,0 +1,46 @@
+image: registry.gitlab.com/particle4dev/build-images:docker-17.07.0-nodejs-8.5.0
+
+# cache
+.default-cache: &default-cache
+  key: "node_modules"
+  paths:
+    - node_modules/
+    - .yarn-cache/
+
+.push-cache: &push-cache
+  cache:
+    <<: *default-cache
+    policy: push
+
+.pull-cache: &pull-cache
+  cache:
+    <<: *default-cache
+    policy: pull
+
+before_script:
+  - docker login -u "gitlab-ci-token" -p "$CI_JOB_TOKEN" "$CI_REGISTRY"
+  - chmod +x -R bin/ && for f in bin/utils/*; do source $f; done
+  - node --version
+  - yarn install --frozen-lockfile --cache-folder .yarn-cache
+
+stages:
+  - build_publish
+
+build_publish:
+  stage: build_publish
+  cache:
+    <<: *default-cache
+  variables:
+    SETUP_DB: "false"
+    DOCKER_DRIVER: overlay
+  services:
+    - docker:dind
+  script:
+    - npm run build
+    - VERSION=`git describe --abbrev=0 --tags`
+    - docker build --file $CI_PROJECT_DIR/Dockerfile.pro -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA .
+    - docker tag ${ECR_REPOSITORY_URL}:${CI_COMMIT_SHA} ${ECR_REPOSITORY_URL}:$VERSION
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+    - docker push ${ECR_REPOSITORY_URL}:$VERSION
+  only:
+    - master

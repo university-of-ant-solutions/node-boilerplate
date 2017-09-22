@@ -1,0 +1,8 @@
+For example:
+
+  $ ./bin/snail stop [options] [SERVICE...]
+
+Usage: stop [options]
+
+Options:
+  --help        : display a short-ish description of the command

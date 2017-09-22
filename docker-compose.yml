@@ -17,6 +17,8 @@ services:
       dockerfile: Dockerfile
     environment:
       - NODE_ENV=development
+      - MONGO_URL=mongodb://mongo/tests
+      - REDIS_URL=redis://redis:6379
     volumes:
       - ./bin:/usr/src/app/bin
       - ./src:/usr/src/app/src

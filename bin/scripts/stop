@@ -1,0 +1,19 @@
+#!/bin/bash
+ROOT_DIR=`dirname "$(perl -e 'use Cwd "abs_path"; print abs_path(shift)' $0)"`
+
+. "$ROOT_DIR/../constant"
+for f in $ROOT_DIR/../utils/*; do source $f; done
+
+if ! typeExists "docker"; then
+  echo "Docker is not installed"
+fi
+
+if ! typeExists "docker-compose"; then
+  echo "Docker compose is not installed"
+fi
+
+docker-compose -f ./docker-compose.yml \
+  stop ${@}
+
+docker-compose -f ./docker-compose.yml \
+  rm -f ${@}

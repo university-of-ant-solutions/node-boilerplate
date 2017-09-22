@@ -1,6 +1,6 @@
-import isFunction from 'lodash/isFunction';
 import mongoose from 'mongoose';
 import nconf from 'nconf';
+import isFunction from 'lodash/isFunction';
 import logger from '../logger';
 
 // http://mongoosejs.com/docs/promises.html
@@ -24,6 +24,7 @@ export function connect(uri, options, cb) {
   // If the connection throws an error
   connect.on('error', (err) => {
     logger.error(`Failed to connect to DB ${uri} on startup ${err.message}`);
+    isFunction(cb) && cb(err);
   });
 
   // When the connection is disconnected
@@ -49,12 +50,12 @@ const {
   TodosModel,
 } = require('../models');
 
-export function connectPrimaryData(uri, options) {
+export function connectPrimaryData(uri, options, cb = () => {}) {
   if (!primaryData) {
     const db = nconf.get('db:mongo');
-    uri = db ? db.uri : uri;
-    options = db ? db.options : options;
-    primaryData = connect(uri, options, () => {});
+    uri = uri || db.uri;
+    options = options || db.options;
+    primaryData = connect(uri, options, cb);
 
     TodosModel(primaryData);
   }

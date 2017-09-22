@@ -1,6 +1,6 @@
 {
   "name": "server-node",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "server site",
   "main": "app.js",
   "scripts": {
@@ -46,7 +46,7 @@
     "winston-daily-rotate-file": "^1.2.0"
   },
   "engines": {
-    "node": "8.2.1",
+    "node": "8.5.0",
     "npm": "5.3.0"
   }
 }
