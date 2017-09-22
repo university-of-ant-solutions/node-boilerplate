@@ -39,8 +39,8 @@ build_publish:
     - npm run build
     - VERSION=`git describe --abbrev=0 --tags`
     - docker build --file $CI_PROJECT_DIR/Dockerfile.pro -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA .
-    - docker tag ${ECR_REPOSITORY_URL}:${CI_COMMIT_SHA} ${ECR_REPOSITORY_URL}:$VERSION
+    - docker tag ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHA} ${CI_REGISTRY_IMAGE}:$VERSION
     - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
-    - docker push ${ECR_REPOSITORY_URL}:$VERSION
+    - docker push ${CI_REGISTRY_IMAGE}:$VERSION
   only:
     - master
