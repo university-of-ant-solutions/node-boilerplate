@@ -1,0 +1,12 @@
+For example:
+
+  $ ./bin/snail logs [options] [SERVICE...]
+
+Usage: logs [options]
+
+Options:
+  --no-color          : produce monochrome output.
+  -f | --follow       : follow log output
+  -t | --timestamps   : show timestamps
+  --tail="all"        : number of lines to show from the end of the logsfor each container.
+  --help              : display a short-ish description of the command

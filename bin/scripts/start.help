@@ -1,0 +1,9 @@
+For example:
+
+  $ ./bin/snail start
+
+Usage: start [options]
+
+Options:
+  --help        : display a short-ish description of the command
+  -b | --build  : build new docker images

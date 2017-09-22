@@ -1,0 +1,9 @@
+For example:
+
+  $ ./bin/snail exec [options] [ARGS...]
+
+Usage: exec [options]
+
+Options:
+  -n | --name         : Name of service (default=server)
+  --help              : display a short-ish description of the command

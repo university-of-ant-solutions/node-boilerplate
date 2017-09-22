@@ -1,0 +1,36 @@
+#!/bin/bash
+ROOT_DIR=`dirname "$(perl -e 'use Cwd "abs_path"; print abs_path(shift)' $0)"`
+
+. "$ROOT_DIR/../constant"
+for f in $ROOT_DIR/../utils/*; do source $f; done
+
+if ! typeExists "docker"; then
+  echo "Docker is not installed"
+fi
+
+if ! typeExists "docker-compose"; then
+  echo "Docker compose is not installed"
+fi
+
+NAME_SERVICE="server"
+ARGS=()
+
+for i in "${@}";
+do
+case $i in
+-n=*|--name=*)
+NAME_SERVICE="${i#*=}"
+shift
+;;
+*)
+ARGS+=("$i")
+;;
+esac
+done
+
+if [ ${#ARGS[@]} -eq 0 ]
+then
+  ARGS+=("sh")
+fi
+
+docker-compose exec $NAME_SERVICE ${ARGS[@]}
