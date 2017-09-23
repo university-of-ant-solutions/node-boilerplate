@@ -4,7 +4,16 @@
   },
   "db": {
     "mongo": {
-      "options": {}
+      "options": {
+        "server": {
+          "socketOptions":{
+            "keepAlive": 1,
+            "autoReconnect": true
+          },
+          "reconnectTries": 60,
+          "reconnectInterval": 1000
+        }
+      }
     },
     "redis": {
       "start": true

@@ -5,35 +5,46 @@ import logger from '../logger';
 
 // http://mongoosejs.com/docs/promises.html
 mongoose.Promise = global.Promise;
+const reconnectTimeout = 3000; // ms.
+let isConnectedBefore = false;
 
 export function connect(uri, options, cb) {
   // http://mongodb.github.io/node-mongodb-native/2.0/api/Server.html#connections
   options.server = options.server ? options.server : {
-    socketOptions: { keepAlive: 1 },
+    socketOptions: { keepAlive: 1, autoReconnect: true },
   };
-  options.auto_reconnect = true;
-  const connect = mongoose.createConnection(uri, options);
+
+  const conn = mongoose.createConnection(uri, options);
 
   // CONNECTION EVENTS
   // When successfully connected
-  connect.on('connected', () => {
+  conn.on('connected', () => {
     logger.info(`Mongoose default connection open to ${uri}`);
+    isConnectedBefore = true;
     isFunction(cb) && cb();
   });
 
   // If the connection throws an error
-  connect.on('error', (err) => {
+  conn.on('error', (err) => {
     logger.error(`Failed to connect to DB ${uri} on startup ${err.message}`);
     isFunction(cb) && cb(err);
+    mongoose.disconnect();
+  });
+
+  conn.on('reconnected', () => {
+    logger.info(`Mongoose reconnected to ${uri}`);
   });
 
   // When the connection is disconnected
-  connect.on('disconnected', () => {
+  conn.on('disconnected', () => {
     logger.warn(`Mongoose default connection to DB : ${uri} disconnected`);
+    if (!isConnectedBefore) {
+      setTimeout(() => connect(uri, options, cb), reconnectTimeout);
+    }
   });
 
   const gracefulExit = () => {
-    connect.close(() => {
+    conn.close(() => {
       logger.info(`Mongoose default connection with DB : ${uri} is disconnected through app termination`);
       process.exit(0);
     });
@@ -41,7 +52,7 @@ export function connect(uri, options, cb) {
   // If the Node process ends, close the Mongoose connection
   process.on('SIGINT', gracefulExit).on('SIGTERM', gracefulExit);
 
-  return connect;
+  return conn;
 }
 
 // Mongo
