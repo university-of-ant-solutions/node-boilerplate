@@ -1,4 +1,4 @@
-image: registry.gitlab.com/particle4dev/build-images:docker-17.07.0-nodejs-8.5.0
+image: registry.gitlab.com/particle4dev/build-images:docker-17.07.0-nodejs-9.11.2
 
 # cache
 .default-cache: &default-cache

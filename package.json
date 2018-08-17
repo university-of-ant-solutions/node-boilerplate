@@ -16,37 +16,37 @@
   "author": "Hoang Nam <particle4dev@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "babel-cli": "^6.10.1",
+    "babel-cli": "^6.26.0",
     "babel-preset-es2015-node5": "1.2.0",
-    "babel-register": "^6.11.6",
+    "babel-register": "^6.26.0",
     "deep-equal": "^1.0.1",
-    "eslint": "4.3.0",
-    "eslint-config-airbnb-base": "^11.2.0",
-    "eslint-plugin-import": "2.7.0",
-    "nodemon": "^1.9.2",
+    "eslint": "^5.3.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "nodemon": "^1.18.3",
     "tap-diff": "^0.1.1",
     "tap-notify": "^1.0.0",
-    "tape": "^4.6.0"
+    "tape": "^4.9.1"
   },
   "dependencies": {
-    "body-parser": "^1.15.2",
-    "compression": "^1.6.2",
+    "body-parser": "^1.18.3",
+    "compression": "^1.7.3",
     "cors": "^2.8.1",
     "errorhandler": "^1.4.3",
-    "express": "^4.14.0",
-    "lodash": "^4.14.2",
-    "mongoose": "^4.5.8",
+    "express": "^4.16.3",
+    "lodash": "^4.17.10",
+    "mongoose": "^5.2.8",
     "mongoose-timestamp": "^0.6.0",
-    "morgan": "^1.7.0",
-    "nconf": "^0.8.4",
-    "redis": "^2.6.2",
+    "morgan": "^1.9.0",
+    "nconf": "^0.10.0",
+    "redis": "^2.8.0",
     "response-time": "^2.3.1",
-    "serve-favicon": "^2.3.0",
-    "winston": "^2.2.0",
-    "winston-daily-rotate-file": "^1.2.0"
+    "serve-favicon": "^2.5.0",
+    "winston": "^3.0.0",
+    "winston-daily-rotate-file": "^3.3.1"
   },
   "engines": {
-    "node": "8.5.0",
-    "npm": "5.3.0"
+    "node": "9.11.2",
+    "npm": "5.6.0"
   }
 }
