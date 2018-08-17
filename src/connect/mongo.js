@@ -72,4 +72,3 @@ export function connectPrimaryData(uri, options, cb = () => {}) {
   }
   return primaryData;
 }
-

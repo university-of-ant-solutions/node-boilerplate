@@ -1,4 +1,4 @@
-FROM node:8.2.1-alpine
+FROM node:9.11.2-alpine
 MAINTAINER Hoang Nam "particle4dev@gmail.com"
 LABEL description="This is dockerfile for building tool images <run test, lint, build source code>"
 
