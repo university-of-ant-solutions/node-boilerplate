@@ -39,7 +39,7 @@
     "mongoose-timestamp": "^0.6.0",
     "morgan": "^1.9.0",
     "nconf": "^0.10.0",
-    "redis": "^2.8.0",
+    "redis": "^3.1.1",
     "response-time": "^2.3.1",
     "serve-favicon": "^2.5.0",
     "winston": "^3.0.0",
