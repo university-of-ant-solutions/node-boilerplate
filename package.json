@@ -33,7 +33,7 @@
     "compression": "^1.7.3",
     "cors": "^2.8.1",
     "errorhandler": "^1.4.3",
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "lodash": "^4.17.10",
     "mongoose": "^5.2.8",
     "mongoose-timestamp": "^0.6.0",
